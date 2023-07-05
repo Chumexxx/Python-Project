@@ -1,0 +1,61 @@
+import string
+
+users = ["Uchechukwu", "Boluwatife", "Adewunmi", "Tauhid", "Atilola"]
+caps = string.ascii_uppercase
+
+numbers = [str(i) for i in range(10)]
+special_chars = ["!", "@", "#", "$"]
+name_check = False
+
+def name_available(name):
+    return name.title() not in users
+
+def number_found(name):
+    return any(char.isdigit() for char in name)
+
+def caps_found(pw):
+    return any(char in caps for char in pw)
+
+def special_found(pw):
+    return any(char in special_chars for char in pw)
+
+while True:
+    if not name_check:
+        username = input("Create your username: ")
+        if name_available(username):
+            if not number_found(username):
+                if 2 < len(username) < 15:
+                    name_check = True
+                    users.append(username)
+                    print("Username created")
+                else:
+                    print("Username must be between 3 and 14 characters")
+            else:
+                print("Username cannot contain numbers")
+        else:
+            print("Please choose another username")
+    else:
+        password = input("Create your Password: ")
+        if caps_found(password):
+            if special_found(password):
+                if number_found(password):
+                    if len(password) > 7:
+                        print(f"Your username is {username} and your password is {password}")
+                        break
+                    else:
+                        print("Password must be at least 8 characters long")
+                else:
+                    print("Password must contain a number")
+            else:
+                print('Password must contain a special character ("!", "@", "#", "$")')
+        else:
+            print("Password must contain a capital letter")
+
+print("\nWelcome to 'SURVIVE THE DAY!' an adventure game that tests your instincts to see how you can survive in a cruel world. Grab some popcorn and take a chance at SURVIVAL\n")
+
+stories = [
+    """Game starts, you're listening to 'ALL OF ME' by John Legend somehow in a moving train - still cannot figure out how you got there and the next you're awoken by a JERK in the train. You realise you are the only one in the train and you are already past your stop; Interestingly, you have a flat battery. You can either get down at the last stop or get down now. [last stop/now] ?""",
+    """After twenty minutes, the train finally stops. You get down and find your way out of the train station, then you realise that you're in a very crowded neighbourhood. You can either meet one of the people in the neighborhood to find out where you are or find the location yourself. [meet/find]?""",
+    """You meet and ask a person dressed in yellow. You engage him and he tells you that you are two hundred miles away from home. He offers to help you by taking you to the nearest bus station but with a risk or drive you home himself but with a price. [bus station/home]?""",
+    """On your way to the bus station, you realise that the guy dressed in yellow is nowhere to be found. Suddenly you feel a hand on your shoulder accompanied by a sharp pain on your head... You fall unconscious! You're awoken with a loud noise, you're at the corner of the room without shoes. You look around and you see a masked man in a room with just one window. [attack the man/wait]?""",
+    """You enter his small yellow car and there is an uncomfortable silence. After a while you begin to feel comfortable and then you look out the window. Almost
